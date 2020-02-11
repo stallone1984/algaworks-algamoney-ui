@@ -575,7 +575,16 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/b1939a9bac
 > ng g c lancamento-cadastro --spec=false
 
 *** 13.2. Adicionando seletor de data (componente Calendar) ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/ea31b088a4ea409293759e58ce9b52445421f560
+
+<p-calendar dateFormat="dd/mm/yy" 
+[inline]="false" [readonlyInput]="false"
+[showIcon]="false"></p-calendar>
+
+*** 13.3. Adicionando botão de seleção ***
 Commit: 
+
+
 
 
 
