@@ -568,6 +568,16 @@ Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/ce38
 
 -> Para limpar o formulário:
  form.reset({ profissao: '' });
+ 
+*** 13.1. Criando o protótipo do formulário de cadastro de lançamentos ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/b1939a9bac959a6dc16e65794fea1e7bbaed7963
+
+> ng g c lancamento-cadastro --spec=false
+
+*** 13.2. Adicionando seletor de data (componente Calendar) ***
+Commit: 
+
+
 
 
   

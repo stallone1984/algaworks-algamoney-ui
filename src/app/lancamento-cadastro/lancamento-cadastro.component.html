@@ -6,13 +6,15 @@
             </div>
 
             <div class="ui-g-6 ui-md-3 ui-fluid">
-                <label>Lançamento</label>
-                <input pInputText type="text">
+                <label>Vencimento</label>
+                <p-calendar dateFormat="dd/mm/yy" 
+                [inline]="false" [readonlyInput]="false"
+                [showIcon]="false"></p-calendar>
             </div>
 
             <div class="ui-g-6 ui-md-3 ui-fluid">
-                <label>Pagamento</label>
-                <input pInputText type="text">
+                <label>Recebimento</label>
+                <p-calendar dateFormat="dd/mm/yy"></p-calendar>
             </div>
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
