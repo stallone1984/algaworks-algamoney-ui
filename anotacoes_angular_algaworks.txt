@@ -582,7 +582,25 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/ea31b088a4
 [showIcon]="false"></p-calendar>
 
 *** 13.3. Adicionando botão de seleção ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/15dccc40fb202b88c9c9739aff6636ebed09ce59
+
+<p-selectButton [options]="tipos" #tipo></p-selectButton>
+
+tipos = [
+	{ label: 'Receita', value: 'RECEITA'},
+	{ label: 'Despesa', value: 'DESPESA'}
+];
+
+*** 13.4. Adicionando caixa de seleção (componente Dropdown) ***
+Commit:
+
+<p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione"></p-dropdown>
+
+pessoas = [
+    { label: 'João da Silva', value: 4 },
+    { label: 'Sebastião Souza', value: 9 },
+    { label: 'Maria Abadia', value: 3 },
+  ];
 
 
 
