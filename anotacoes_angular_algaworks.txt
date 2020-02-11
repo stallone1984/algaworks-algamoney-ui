@@ -1,0 +1,591 @@
+-> Para remover uma versão antiga do Angular CLI:
+> [sudo] npm unistall -g @angular/cli
+-> Limpar o cache local da máquina
+> npm cache clean
+-> Para instalar o angular CLI:
+> [sudo] npm install -g @angular/cli
+-> Para criar um novo projeto:
+> ng new meuprojeto
+-> Para rodar o servidor local na porta localhost:4200
+> ng serve
+-> Para rodar em uma porta diferente da 4200:
+> ng serve --port 8181
+-> Ao baixar um projeto Angular do git, é preciso primeiro rodar o comando 
+npm install para instalar as dependências (node_modules)
+-> Ao criar um novo projeto com ng new, o cli já executa o npm install
+-> @NgModule - É um decorator que indica que é um módulo do Angular
+-> declarations: [] - Declara classes de visualização (Componentes, Diretivas, Pipes) que pertencem ao módulo.
+-> imports: [] - Importa outros módulos que o módulo atual depende
+-> providers: [] - Define provedores de serviços
+-> bootstrap: [] - Define o componente principal
+-> No main.ts é indicado qual módulo deve iniciar a aplicação:
+  platformBrowserDynamic().bootstrapModule(AppModule)
+  
+*** 9.2 - O que são componentes ***
+-> Uma aplicação Angular é uma combinação de componentes
+-> Cada componente tem o seu template html, estilos css, seletor e a sua lógica de negócio
+-> Os componentes são importantes por serem reutilizáveis
+
+*** 9.3 - Criando um componente ***
+> export class HelloComponent {}
+> @Component
+> import { Component } from '@angular/core';
+-> Para usar este componente, precisa declará-lo dentro do declarations do AppModule
+-> Para crirar um componente usando o CLI:
+> ng generate component bem-vindo
+ou
+> ng g c bem-vindo
+-> Para criar sem o arquivo spec:
+>ng g c bem-vindo --spec=false
+
+*** 9.4 - Instalando a biblioteca CSS do Bootrstrap ***
+> npm install bootstrap --save
+> "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+
+*** 9.5 Introdução a data binding ***
+-> Data bind é a forma de vincularmos o componente com o template e vice-versa
+
+1 - Interpolação:
+  {Component} --> {{ valor }} --> <Template> 
+  
+2 - Property Binding:
+  {Component} --> [property]="valor" --> <Template>
+  
+3 - Event Binding:
+  {Component} <-- (evento)="handler" <-- <Template>
+  
+4 - Two Way Data Binding:
+ {Component} --> [(ngModel)]="property" --> <Template>
+ 
+OBS: Aparentemente na versão 8 do Angular é necessário importar o FormsModule para qualquer tipo 
+  de data binding funcionar. ???????
+import { FormsModule } from '@angular/forms';
+ 
+*** 9.6 - Usando interpolação ***
+-> Nós usamos interpolação de strings para adicionar no meio do html algum resultado calculado
+  através de uma expressão de template ou o valor de alguma propriedade do componente
+  
+*** 9.7 - Usando Event binding ***
+>  <button (click)="adicionarFuncionario()" type="button" class="btn btn-primary">Adicionar</button>
+> <input id="nome" type="text" class="form-control" (input)="alterarNome($event)">
+> alterarNome(evento: any) {
+    this.nome = evento.target.value;
+  }
+-> Outra opção:
+> <input id="nome" type="text" class="form-control" (input)="nome = $event.target.value">
+  
+*** 9.8 Usando variável de referência ***
+> <input id="nome" type="text" class="form-control" #nomeInput>
+> <button (click)="adicionarFuncionario(nomeInput.value)">Adicionar</button>
+-> A variável de referência representa o próprio elemento DOM (O input neste caso).
+-> É equivalente a $event.targrt
+
+*** 9.9 - Usando property binding ***
+-> É um outro tipo de data binding que permite vincular propriedades do componente ou expressões typescript 
+  às propriedades dos elementos do template.
+> <input id="nome" type="text" class="form-control" [value]="nome">  
+> <button [disabled]="!nome.length">Adicionar</button>
+
+*** 9.10 - Usando two-way data binding ***
+> <input id="nome" type="text" class="form-control" [(ngModel)]="nome">
+-> Para utilizar o ngModel precisa adicionar o FormsModule (Versão 4?)
+
+*** 9.11 - Introdução às diretivas ***
+-> Diretivas são fundamentais em aplicações Angular
+-> São instruções que passamos nos templates
+-> Existem três categorias de diretivas no Angular:
+* Componentes:
+  -> Componente é um tipo de diretiva, porém com template:
+  -> Ex: <lista-pessoas></lista-pessoas>
+  
+* Diretivas Estruturais:
+  -> Modificam a estrutura do DOM adicionando ou removendo elementos.
+  -> Ex: <h2 *ngIf="logado">Olá {{ nomeUsuario }}</h2>
+  
+* Diretivas de Atributos:
+  -> Modifica o comportamento ou a aparência do elemento.
+  -> Exs: <h2 [style.color]="'red'">Olá {{ nomeUsuario }}</h2>
+         <h2 atencao>Olá {{ nomeUsuario }}</h2>
+  
+*** 9.12 - Exibindo condicionalmente com as diretivas ngIf e hidden ***
+-> Quando a diretiva é uma diretiva estrutural, é exigido o * antes do nome da diretiva
+> <div *ngIf="adicionado">Usuário {{ nome }} adicionado.</div>
+-> No caso da diretiva estrutural, o elemento é realmente removido/adicionado do DOM
+> <div [hidden]="!adicionado">Usuário {{ nome }} adicionado.</div>
+-> Ao utilizar uma diretiva de atributo, o elemento não é removido, apenas o seu comportamento 
+  muda. (display:none)
+-> Neste caso, o código continua disponível pelo inspect, portanto é preciso tomar cuidado com informações sensíveis
+-> Por outro lado, por alterar a estrutura do DOM, a diretiva *ngIf é mais custosa
+
+*** 9.13 - Iterando com a diretiva ngFor ***
+>   <div class="col-2" *ngFor="let funcionario of funcionarios">
+	  <div class="card">
+		<img class="card-img-top" src="https://randomuser.me/api/portraits/men/{{funcionario.id}}.jpg" alt="Card image cap">
+		<div class="card-body">{{ funcionario.nome }}</div>
+	  </div>
+	</div>
+	
+-> Atenção à sintaxe: let funcionario of funcionarios
+
+*** 9.14 - Binding de propriedades customizadas com @Input ***
+-> Criar um novo componente chamado funcionario-card
+> ng g c funcionario-car --spec=false
+-> Colocar o trecho do card dentro do html do novo componente:
+> <div class="card">
+	<img class="card-img-top" src="https://randomuser.me/api/portraits/men/{{funcionario.id}}.jpg" alt="Card image cap">
+	<div class="card-body">{{ funcionario.nome }}</div>
+  </div>
+-> Criar uma propriedade funcionario dentro do novo compoente e expô-la através do @Input()
+> @Input() funcionario: any;
+-> Utilizar o seletor do novo componente passando o valor da propriedade funcionario:
+> <div class="col-2" *ngFor="let f of funcionarios">
+	<app-funcionario-card [funcionario]="f"></app-funcionario-card>
+  </div>
+-> É possível mudar o nome da propriedade passando um alias:
+> @Input('func') funcionario: any;
+> <app-funcionario-card [func]="f"></app-funcionario-card>
+
+
+*** 9.15 - Bind de eventos customizados com @Output e EventEmitter ***
+-> Criar um novo componente funcionario-form:
+> ng g c funcionario-form
+-> Copiar todo o conteúdo do componente app.componente para o novo componente
+-> Copiar o conteúdo html do form para o html do novo componente
+-> Adicionar um emissor de eventos no novo componente:
+> @Output() funcionarioAdicionado = new EventEmitter();
+-> OBS: ImportarEventEmitter do pacote @angular/core
+-> Emitir o evento ao adicionar um funcionario:
+> this.funcionarioAdicionado.emit(funcionario);
+-> Declarar o array de funcionarios no app.componente
+-> Criar um método para ser chamado pelo evento e adicionar o funcionario:
+> aoAdicionar(funcionario) {
+    this.funcionarios.push(funcionario);
+  }
+-> Na utilização do novo componente, ouvir a emissão do evento e chamar o novo método:
+> <app-funcionario-form (funcionarioAdicionado)=aoAdicionar($event)></app-funcionario-form>
+
+*** 9.16 - Adicionando estilos CSS em componentes ***
+-> stylesUrls: Recebe um array de arquivos css
+-> styles: Recebe um array de stilos css:
+> styles: [
+    `
+      .card-body {
+        text-transform: uppercase;
+        color: blue;
+      }
+    `
+  ]
+  
+*** 9.17 - Estilos CSS dinâmicos com ngStyle ***
+-> ngStyle é uma diretiva e não uma propriedade html, por isso precisa ser declarada assim: [ngStyle]=""
+-> Deve receber um objeto JavaScript com as propriedades css
+> [ngStyle]="getEstilosCartao()"
+> getEstilosCartao() {
+    return { 
+      'border-width.px': this.funcionario.id,
+      backgroundColor: this.funcionario.id % 2 == 0 ? 'lightblue' : 'lightgreen' 
+    }
+  }
+  
+*** 9.18 - Classes CSS dinâmicas com ngClass ***
+> <span [ngClass]="['badge', 'badge-primary']">
+> <span class="badge" [ngClass]="{ 'badge-secondary': isAdmin(), 'badge-primary': !isAdmin()}">{{ funcionario.nome }}</span>
+
+
+*** 10.1 - Instalando plugins úteis no Visual Studio Code ***
+-> Para executar o tslint:
+> node_modules/tslint/bin/tslint --project tslint.json
+-> Porém no Angular 8 o cli já cria um script ng lint
+> ng lint
+-> Adicionar a extensão TSLint para já rodar o TSLint ao compilar o projeto
+-> Instalar a extensão do EditorConfig para configurar tabs, espaços, adicionar new line, etc
+-> Instalar a extensão HTML Snippets
+-> Instalar a extensão Auto Import
+
+*** 10.2 - Escolhendo uma biblioteca de componentes ***
+-> Angular Materialize
+-> Angular3 Materialize
+-> Ng Bootstrap
+-> PrimeNG
+
+*** 10.3 - Criando o projeto do curso e instalando o PrimeNG ***
+-> Criar o projeto do curso:
+> ng new algamoney-ui
+-> Instalar o PrimeNG:
+> npm install primeng --save 
+-> Instalar o primeicons (substitui font awesome)
+> npm install primeicons --save
+-> Testando o PrimeNG com o componente tabView
+-> Copiar o conteúdo da documentação:
+-> https://www.primefaces.org/primeng/#/tabview
+-> Adicionar o conteúdo no app.component.html
+-> Importar o TabViewModule dentro do app.module.ts:
+> import {TabViewModule} from 'primeng/tabview';
+-> Precisa importar o módulo para cada componente que for utilizar.
+
+*** 10.4 - Adicionando o formulário de pesquisa de lançamentos ***
+-> 
+
+*** 10.5 - Adicionando uma tabela de dados ***
+-> Instalar a dependência que o p-table irá utilizar:
+> npm install @angular/cdk --save
+
+-> Maneira anterior de utilizar o p-dataTable:
+<p-dataTable [value]="lancamentos">
+  <p-column field="pessoa" header="Pessoa"></p-column>
+  <p-column field="descricao" header="Descrição"></p-column>
+  <p-column field="dataVencimento" header="Vencimento" styleClass="col-data"></p-column>
+  <p-column field="dataPagamento" header="Pagamento" styleClass="col-data"></p-column>
+  <p-column field="valor" header="Valor" styleClass="col-valor"></p-column>
+</p-dataTable>
+
+-> Utilizando p-table no Angular 8:
+<p-table [value]="lancamentos">
+  <ng-template pTemplate="header">
+	<tr>
+		<th>Pessoa</th>
+		<th>Descricao</th>
+		<th class="col-data-header">Vencimento</th>
+		<th class="col-data-header">Pagamento</th>
+		<th class="col-valor-header">Valor</th>
+	</tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-lancamento>
+	  <tr>
+		  <td>{{lancamento.pessoa}}</td>
+		  <td>{{lancamento.descricao}}</td>
+		  <td class="col-data-content">{{lancamento.dataVencimento}}</td>
+		  <td class="col-data-content">{{lancamento.dataPagamento}}</td>
+		  <td class="col-valor-content">{{lancamento.valor}}</td>
+	  </tr>
+  </ng-template>
+</p-table>		
+
+*** 10.6 - Customizando colunas com o ng-template ***
+-> Como fazer nas versões mais antigas:
+<p-column field="valor" header="Valor" styleClass="col-valor">
+  <ng-template let-lanc="rowData" pTemplate="body">
+	<span [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">{{lanc.valor}}</span>
+  </ng-template>
+</p-column>
+
+-> Como o Angular 8 já trabalho com template fica mais simples:
+<td class="col-valor-content" [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue' ">{{lancamento.valor}}</td>
+
+*** 10.7 - Fazendo paginação de dados ***
+-> A paginação não mudou das versões mais antigas para a versão 8
+<p-table [value]="lancamentos" [paginator]="true" [rows]="5">
+
+*** 10.8 - Adicionando tooltip ***
+<a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+
+*** 10.9 - Colocando a tabela de dados responsiva ***
+-> Devemos adicionar [responsive]="true"
+<p-table [value]="lancamentos" [paginator]="true" [rows]="5" [responsive]="true">
+
+*** 10.10 - Criando o componente de pesquisa de lançamentos ***
+-> Criar o novo componente:
+> ng g c lancamentos-pesquisa --spec=false
+-> Copiar o conteudo html e do component do app para o novo component
+-> Adicionar o seletor do novo componente no app.component.html
+
+*** 10.11 - Criando o componente de barra de navegação ***
+-> Criar o componente:
+> ng g c navbar --spec=false
+-> Adicionar o seletor no app.component.html
+-> Adicionar o conteúdo abaixo:
+<nav class="navbar">
+  <div class="container">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <a href="javascript:;" class="navbar-toggle"><i class="pi pi-bars"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+-> OBS: href="javascript:;" indica que não deve executar nenhuma ação ao clicar no link
+
+*** 10.12 - Adicionando menu intercambiável ***
+<ul class="navbar-menu" [hidden]="!exibindoMenu">
+  <li class="navbar-usuario">José da Silva</li>
+  <li class="navbar-menuitem"><a href="#">Lançamentos</a></li>
+  <li class="navbar-menuitem"><a href="#">Pessoas</a></li>
+  <li class="navbar-menuitem"><a href="#">Logout</a></li>
+</ul>
+
+-> Classes css estão no arquivo navbar.componente.css
+.navbar {
+  padding: 10px 0;
+  background-color: #1e94d2;
+}
+
+.navbar-toggle {
+  color: #fff;
+}
+
+.navbar-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 210px;
+  margin: 0;
+  z-index: 9998;
+  padding: 0;
+
+  background-color: #3a3633;
+
+  list-style: none;
+}
+
+.navbar-usuario {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #525151;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+
+.navbar-menuitem {
+  padding: 15px;
+}
+
+.navbar-menuitem a {
+  color: #c0bbb7;
+  text-decoration: none;
+}
+
+.navbar-menuitem a:hover {
+  color: #fff;
+}
+
+-> Ação para exibir/ocultar o menu:
+ <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars"></i></a>
+ 
+ 
+*** 11. 1 - Criando diretivas customizadas ***
+-> Criar uma nova diretiva:
+> ng g d campo-colorido --spec=false
+-> Uma diretiva deve conter o decorator @Directive com os seus metadados
+@Directive({
+  selector: '[appCampoColorido]'
+})
+-> O valor do seletor entre colchetes indica que é um seletor de atributos
+-> ElementRef é um objeto que dá acesso ao elemento hospedeiro da DOM
+-> Renderer2 é um serviço nativo do Angular que fornece uma abstração para manipular renderizações
+constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2
+  ) {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'yellow');
+  }
+-> ElementRef é uma abstração para acessar os elementos do DOM, 
+  o nativeElement é o elemento do DOM em si (input, label, table, etc)
+<input id="nome" type="text" class="form-control" [(ngModel)]="nome" #nomeInput
+    (focus)="adicionado = false" appCampoColorido>
+-> É importante prefixar o nome do seletor para evitar conflitos de nomes
+-> É possível usar como seletor qualquer elemento html, neste caso não é preciso utilizar a diretiva como atributo
+-> Porém é recomendando usar as diretivas com seletores de atributos
+
+*** 11.2 - Respondendo a eventos do hospedeiro com @HostListener ***
+-> O decorator @HostListener permite escutar eventos que ocorrerem no elemento hospedeiro
+@HostListener('focus') aoGanharFoco() {
+	this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'yellow');
+}
+ 
+@HostListener('blur') aoPerderFoco() {
+	this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
+}
+
+*** 11.3. Vinculando propriedades do hospedeiro com @HostBinding ***
+-> O decorator @HostBinding permite acessar/alterar propriedades do hospedeiro
+@HostBinding('style.backgroundColor') corDeFundo: string;
+-> Atenção: É style.backgroundColor e não style.background-color
+
+*** 11.4. Usando property binding em diretivas customizadas ***
+-> Para receber um valor de uma propriedade como entrada de uma diretiva usamos @Input
+@Input() cor = 'gray';
+<input appCampoColorido cor="pink">
+ou então
+<input appCampoColorido [cor]="'pink'">
+-> Atenção: Se utilizar [], precisa passar o valor entre '' para o angular entender que é um valor literal e não uma propriedade.
+-> Colocar [] ajuda a identificar que é um bind da diretiva e não uma propriedade do próprio elemento
+-> É possível passar o valor do atributo da seguinte forma:
+<input [appCampoColorido]="'pink'">
+-> Para isto, é necessário adicionar um alias ao atributo, com o mesmo nome da diretiva:
+@Input('appCampoColorido') cor = 'gray';
+-> Neste caso o valor precisa ser passado entre ''
+
+
+*** 11.5. Exportando a API da diretiva para o template ***
+-> A ideia e conseguir chamar os métodos da diretiva a partir de um local que não use a diretiva
+-> Adicionar o atributo exportAs nos metadados da diretiva:
+@Directive({
+  selector: '[appCampoColorido]',
+  exportAs: 'campoColorido'
+})
+-> Declarar uma variável local e atribuir o valor do exporAs no elemento que usa a diretiva:
+<input [appCampoColorido]="'green'" #campo="campoColorido">
+-> Chamar os métodos da diretiva através da variável local:
+<button class="btn btn-info" (click)="campo.colorir()">Colorir</button>
+<button class="btn btn-info" (click)="campo.descolorir()">Descolorir</button>
+-> Atenção: Os métodos colorir e descolorir são os mesmo chamados através do decorator @HostListener
+
+*** 11.6. Conhecendo e usando pipes ***
+-> Alguns pipes nativos do Angular:
+* lowercase
+* uppercase
+* date
+* number
+* currency
+* json
+
+*** 11.7. Passando parâmetros para pipes ***
+-> DatePipe
+{{ dataAniversario | date:'dd/MM/yyyy' }}
+-> DecimalPipe
+{{ valor number:'10.4-4' }} // Preenche com 10 números inteiros e com mínimo e máximo de 4 números decimais
+-> CurrencyPipe
+{{ troco | currency:'BRL':true:1.2-2 }}
+
+
+*** 12.1. Introdução aos formulários ***
+-> O Angular cria um object javascript representando o formulário
+-> Uma propriedade importante deste javascript é a propriedade value
+-> Existem duas formas de trabalhar com formulário no Angular:
+  -> Template-Driven: O formulário é configurado no próprio html
+  -> Reactive Form (Model-Driven): Ainda é feito em html, mas a inplementação é feita nas classes de componentes.
+  
+*** 12.2. Template-driven Forms: Criando um formulário ***
+-> Quando adicionamos o módulo FormsModule, passamos a tag <form> passa a ser tratada como uma diretiva do Angular
+-> Caso seja necessário que o Angular não gerencie o form, deve-se adicionar a diretiva de atributo ngNoForm na diretiva form
+-> É possível capturar a submissão do formulário através do event bind ngSubmit
+-> Podemos passar o formulario através de uma variável local apontando para o objeto ngForm:
+<form #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
+-> O método salvar vai receber uma instância do tipo NgForm:
+salvar(form: NgForm) { }
+
+*** 12.3. Registrando os controles do formulário ***
+-> Agora será necessário registrar os controles dentro do ngForm
+-> Quando adicionamos a diretiva ngModel a um campo, o Angular irá instanciar um objeto do tipo FormControl 
+  e vincular ao objeto NgForm
+-> Ao utilizarmos a diretiva ngModel, o campo do formulário precisa ter um atributo name definido. 
+  Este name será o nome do controle dentro do NgForm
+<input type="text" class="form-control" name="nome" ngModel>
+
+*** 12.4. Adicionando opções dinâmicas no campo de seleção ***
+<option *ngFor="let profissao of profissoes"
+          [value]="profissao">{{profissao}}</option>
+		  
+*** 12.5. Definindo o valor padrão em campos com ngModel ***
+> [ngModel]="'Engenheiro'"
+> [ngModel]="profissao"
+-> Desta segunda forma (one-way) o valor selecionado no formulário não será refletido na variavel profissao
+
+*** 12.6. Two-way binding com ngModel ***
+-> Criar uma classe de modelo:
+class Cliente {
+  nome: string;
+  email: string;
+  profissao: string;
+}
+-> Fazer o two-way-data binding:
+<input type="text" class="form-control" name="nome" [(ngModel)]="cliente.nome">
+-> Exibir o cliente como json:
+{{ cliente | json }}
+
+*** 12.7. Adicionando validação em formulários ***
+-> Adicionar o atributo required.
+-> O atributo required é do html, mas como os fomulário está sendo gerenciado pelo Angular,
+  ele adiciona uma validação de obrigatoriedade para este campo
+-> Alguns exemplos de validação:
+<input type="text" name="nome" [(ngModel)]="cliente.nome" required minlength="5">
+<input type="text"  name="email" [(ngModel)]="cliente.email" required email>
+
+-> Desabilita o botão se o formulário não for válido:
+<button type="submit" class="btn btn-primary" [disabled]="!usuarioForm.valid">Salvar</button>
+
+-> Validadores do Angular:
+* CheckboxRequired
+* minlength
+* email
+* pattern
+* maxlength
+* required
+
+*** 12.8. Exibindo erro de validação do formulário ***
+-> Para desabilitar o auto complete:
+<form autocomplete="off" #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
+-> Adicionando mensagem de validação quando o formulário não está válido:
+<div *ngIf="usuarioForm.invalid" class="alert alert-danger">
+	Preencha todos os campos corretamente
+</div>
+
+*** 12.9. Exibindo erro de validação de controles do formulário ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/84a7e6ed242b30c0ab004923772259fd8d741939
+
+-> Para validar se um campo é válido ou inválido:
+<input name="nome" [(ngModel)]="cliente.nome" required minlength="5" #nome="ngModel">
+<div class="alert alert-danger" *ngIf="nome.invalid">Informe um nome válido</div>
+
+-> Para fazer a validação or tipo de erro:
+<div class="alert alert-danger" *ngIf="nome.hasError('required')">Informe um nome</div>
+<div class="alert alert-danger" *ngIf="nome.hasError('minlength')">O nome deve ser completo</div>
+
+*** 12.10. Rastreando o estado em controles do formulário ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/943b0c32bb8ef0328ed54a22db14c7b573705787
+
+-> Touched: O campo já foi tocado 
+-> Pristine: Está puro, intacto, não foi alterado
+-> Dirty: O campo já foi mexido
+<div *ngIf="usuarioForm.invalid && usuarioForm.dirty" class="alert alert-danger">
+ <div class="alert alert-danger" *ngIf="nome.hasError('required') && nome.touched">Informe um nome</div>
+
+
+*** 12.11. Estilizando os campos inválidos com classes CSS do Angular ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/93a69a5a1a2f21f079b703877b494b2ca4a93383
+
+-> Os controllers que estão sendo gerenciados pelo formulário, eles não só têm um estado,
+  mas eles também recebem uma classe css especial do Angular de acordo com o seu estado.
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+  border: 1px solid red
+}
+
+*** 12.12. Estilizando os campos inválidos com Bootstrap ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/149500940f4b2a488f12caf7f785cb525fe30e54
+
+-> Atenção: Atualizar a versão do bootstrap:
+$ npm uninstall bootstrap (desinstala)
+e instala essa
+$ npm install bootstrap@4.0.0-alpha.6
+
+<div class="form-group" [class.has-danger]="nome.invalid && nome.touched">
+
+*** 12.13. Limpando formulários (reset) ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/ce3862b2dc8ebb391e555776bf55b3b906f4417e
+
+-> Para limpar o formulário:
+ form.reset({ profissao: '' });
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
