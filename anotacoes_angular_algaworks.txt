@@ -624,7 +624,28 @@ import {InputMaskModule} from 'primeng/inputmask';
 <p-inputMask mask="99.999-999"></p-inputMask>
 
 *** 13.8. Validando controles de formulário com PrimeNG ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/04f05c4fdc81c9edba969640e8dfbc0dd492b86f
+
+<div class="ui-g-12 ui-md-9 ui-fluid">
+	<label>Descrição</label>
+	<input pInputText type="text" name="descricao" 
+		ngModel #descricao="ngModel" required minlength="5">
+
+	<div *ngIf="descricao.hasError('required') && descricao.dirty" 
+		class="ui-messages ui-messages-error">
+		Informe uma descrição
+	</div>
+
+	<div *ngIf="descricao.hasError('minlength') && descricao.dirty" 
+		class="ui-messages ui-messages-error">
+		Mínimo de {{ descricao.errors.minlength.requiredLength}} caracteres. Você digitou apenas {{ descricao.errors.minlength.actualLength}}.
+	</div>
+</div>
+
+*** 13.9. Criando componente de mensagem de erro de validação ***
+Commit:
+
+
 
 
 
