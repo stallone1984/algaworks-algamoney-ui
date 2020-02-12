@@ -612,6 +612,20 @@ $ npm install ng2-currency-mask --save
 <input pInputText type="text" placeholder="0,00" currencyMask
     [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }">
 
+*** 13.6. Desafio: criando o protótipo do formulário de cadastro de pessoa ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/aa753a0b65bf722cab9f6bab039d6423a97ce80c
+
+*** 13.7. Adicionando campo com máscara (componente InputMask) ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/5af73a1f879379f0fc4cdc9bc728e88c9fa99b74
+
+import {InputMaskModule} from 'primeng/inputmask';
+
+<label>CEP</label>
+<p-inputMask mask="99.999-999"></p-inputMask>
+
+*** 13.8. Validando controles de formulário com PrimeNG ***
+Commit: 
+
 
 
 
