@@ -592,7 +592,7 @@ tipos = [
 ];
 
 *** 13.4. Adicionando caixa de seleção (componente Dropdown) ***
-Commit:
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/4b9257fe5395646770208db703d78faa1cfb27c6
 
 <p-dropdown [options]="pessoas" [filter]="true" placeholder="Selecione"></p-dropdown>
 
@@ -601,6 +601,16 @@ pessoas = [
     { label: 'Sebastião Souza', value: 9 },
     { label: 'Maria Abadia', value: 3 },
   ];
+  
+*** 13.5. Adicionando máscara de dinheiro com ng2-mask-money ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/e00a4888d706d64b975477beab91ff3fa93e361e
+
+-> Instalar a dependência do ng2-currency-mask:
+https://www.npmjs.com/package/ng2-currency-mask
+$ npm install ng2-currency-mask --save
+
+<input pInputText type="text" placeholder="0,00" currencyMask
+    [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }">
 
 
 
