@@ -10,6 +10,7 @@ import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import {InputMaskModule} from 'primeng/inputmask';
 import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
     TableModule,
     TooltipModule,
     InputMaskModule,
+    SharedModule
   ],
   exports: [
     PessoaCadastroComponent,
