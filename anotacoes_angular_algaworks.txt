@@ -643,7 +643,116 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/04f05c4fdc
 </div>
 
 *** 13.9. Criando componente de mensagem de erro de validação ***
-Commit:
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/9f7d6474fab56fc645ce079cd2b8bc2c0ce44007
+
+$ ng g c message --spec=false --inline-template --inline-style
+
+-> Dentro de lancamento.cadastro.component.html
+<app-message [control]="descricao" error="required"
+     text="Informe uma descrição"></app-message>
+
+-> Dentro do novo componente:
+@Component({
+  selector: 'app-message',
+  template: `
+    <div *ngIf="temErro()" 
+      class="ui-messages ui-messages-error">
+      {{ text }}
+    </div>
+  `,
+  styles: []
+})
+export class MessageComponent {
+
+  @Input() error: string;
+  @Input() control: FormControl;
+  @Input() text: string;
+
+  temErro(): boolean {
+    return this.control.hasError(this.error) && this.control.dirty;
+  }
+
+}
+
+*** 13.10. Desafio: controles, validações e mensagens de erro ***
+Commit: 
+
+*** 14.1. Introdução aos módulos ***
+
+-> Para que um componente possa ser utilizado por outro módulo, o módulo onde ele foi declarado precisa exportar este componente
+  e o módulo que deseja usar o componente precisa importar o módulo do componente.
+
+
+*** 14.2. Criando um módulo e exportando um componente *** 
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/46bc4004681aa42d83ce5552b929ff01fb38dead
+
+-> Criação de um novo módulo botoes:
+$ ng g m botoes
+
+-> Ao criar um novo módulo, importamos o CommonModule que possui as diretivas básicas como ngIf, ngFor, etc.
+-> O BrowserModule importa internamente o CommonModule e reexporta este módulo.
+-> Criar o componente botao-grande dentro do módulo botoes:
+$ ng g c botoes/botao-grande --spec=false
+
+@NgModule({
+  declarations: [
+    BotaoGrandeComponent
+  ],
+  imports: [
+    CommonModule
+  ],
+  exports: [
+    BotaoGrandeComponent
+  ]
+})
+export class BotoesModule { }
+
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    BotoesModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+*** 14.3. Reexportando um módulo ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/aa9ff412962b252e5a2e8984921d2c4924f38ae1
+
+-> O módulo NavegacaoModule reexporta o módulo BotoesModule:
+@NgModule({
+  declarations: [
+    MenuComponent
+  ],
+  imports: [
+    CommonModule,
+    BotoesModule
+  ],
+  exports: [
+    MenuComponent,
+    BotoesModule // Reexporta o BotoesModule
+  ]
+})
+export class NavegacaoModule { }
+
+*** 14.4. Criando um componente interno do módulo ***
+Commit: 
+
+-> Para que um componente seja interno ao módulo, basta não exportá-lo
+
+*** 
+
+
+
+
+
+
 
 
 
