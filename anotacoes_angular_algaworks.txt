@@ -925,6 +925,12 @@ Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/963f
 Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/c3bab55e43e64d0d8b6879f1b580b6218d75c4e3
 
 
+*** 17.2. Criando o serviço de consulta de lançamentos ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8dd85eba8cb3cdb4f7eb3237851c46602fc3a6cc
+
+
+*** 17.3. Adicionando filtro por descrição na pesquisa de lançamentos ***
+Commit: 
 
 
 

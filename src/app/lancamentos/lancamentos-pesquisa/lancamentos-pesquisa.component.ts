@@ -9,6 +9,7 @@ import { LancamentoService } from '../lancamento.service';
 })
 export class LancamentosPesquisaComponent implements OnInit{
 
+  descricao: string;
   lancamentos: LancamentoDTO[] = [];
 
   constructor(
@@ -16,11 +17,11 @@ export class LancamentosPesquisaComponent implements OnInit{
   ){}
 
   ngOnInit() {
-    this.carregarLancamentos()
+    this.pesquisar()
   }
 
-  carregarLancamentos() {
-    this.lancamentoService.pesquisar()
+  pesquisar() {
+    this.lancamentoService.pesquisar({ descricao: this.descricao })
     .then(response => {
       this.lancamentos = response;
     })
