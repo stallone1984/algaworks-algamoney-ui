@@ -742,11 +742,196 @@ Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/aa9f
 export class NavegacaoModule { }
 
 *** 14.4. Criando um componente interno do módulo ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/cd980068b15788b3092fc910a678c8ad2eaa02b9
 
 -> Para que um componente seja interno ao módulo, basta não exportá-lo
 
-*** 
+*** 14.5. O que são Feature Modules? ***
+
+-> Um feature module é um módulo que acomoda elementos de uma mesma funcionalidade do sistema
+
+*** 14.6. Criando um Feature Module ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/f215e863066ee728ce181db7315c8474a4a77927
+
+
+*** 14.7. Desafio: criando o feature module de pessoas ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/1915489bb5beb0a0cfeb13f72f57c57408fa8905
+
+*** 14.8. O que são Shared Modules? *** 
+
+-> São módulos que contém componentes que podem ser comparilhados entre os demais módulos da aplicação.
+
+*** 14.9. Criando um Shared Module ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/a9e17eaa45b752e3946f9e5a40f051ceb963a678
+
+*** 14.10. O que é Core Module? ***
+
+-> Elementos que são utilizados apenas no módulo raiz da aplicação devem ser colocados dentro de um core module.
+
+*** 14.11. Desafio: criando o Core Module ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/e6c1ef46ba6bb6ddfdb2bc66a4330c56dfb8f479
+
+
+*** 15.1. Introdução aos serviços ***
+
+-> Um serviço é utilizado quando uma funcionalidade em comum precisa ser fornecida para vários componentes ou módulos
+-> A criação de serviços deixa o código dos componentes mais limpos e mais focados em controlar a view enquanto que 
+  os serviços ficam mais focados nas regras de negócios, gerenciamento de dados, comunicação com apis externas, etc.
+  
+*** 15.2. Implementando um serviço ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/ff27e1feda211099321358627e2f9f162d53c312
+
+*** 15.3. O que é injeção de dependências? ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/c7fc06161da036cc23f56d781d6296e16d834d87
+
+*** 15.4. Configurando o injetor com provider por classe ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/1b99240886114e18104f1ebd5432eabc38d18af0
+
+export class FuncionarioAbreviadoService extends FuncionarioService {
+    adicionar(funcionario) {
+        funcionario['nome'] = funcionario['nome'].substr(0, 3)  + '...'
+        super.adicionar(funcionario);
+    }
+}
+
+providers: [
+    { provide: FuncionarioService, useClass: FuncionarioAbreviadoService}
+]
+
+*** 15.5. Configurando o injetor com provider por fábrica ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/ca0a9a963ee4e30c4ddfbd6daec704da03470f45
+
+const criarFuncionarioService = () => {
+  return new FuncionarioAbreviadoService(2);
+}
+
+providers: [
+    { provide: FuncionarioService, useFactory: criarFuncionarioService }
+]
+
+*** 15.6. Configurando o injetor com provider por valor e o decorator @Inject ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/be90f6630fb96e73f75949dc0d630160d436636f
+
+export class LogService {
+
+    constructor(@Inject('LogPrefixo') private prefixo: string) { }
+
+    log(msg: string) {
+        console.log(`${this.prefixo}: ${msg}`);
+    }
+}
+
+providers: [
+    LogService,
+    { provide: 'LogPrefixo', useValue: 'LOG'}
+  ]
+
+*** 15.7. Injetando serviços dentro de serviços e o decorador @Injectable ***
+ Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/a0b5a20b6ea264ca350e1484509b7814df72c409 
+
+-> O decorator @Injectable deve ser usado na classe que vai receber algum valor injetado.
+
+@Injectable()
+export class FuncionarioService {
+    constructor(private logService: LogService) { }
+}
+
+-> Porém, por padrão econvenção, é recomendado utilizar o @Injectable em todas as classes de serviço
+-> O Angular CLI já adiciona este decorator ao criar um serviço:
+$ ng g s teste --spec=false
+
+
+*** 15.8. Como funciona o Injetor Hierárquico *** 
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/8981867ae80f1146cae85ffcff7f3222e471c35b
+
+-> O injetor do Angular geralmente retorna um singleton
+-> Quando declaramos o provider no app.module, na inicialização da aplicação o Angular instancia os objetos
+  e registra estes objetos no Injetor raiz (root injector)
+-> Qualquer componente de qualquer módulo pode receber uma instância injetada no root injector
+-> Quando definimos um provider em qualquer módulo, os elementos também são registrado no root injector
+-> Não existe um injetor específico para o módulo
+
+-> Quando injetamos uma dependência em um componente, a dependência é registrada em um injetor filho que é específico do componente.
+-> Se for injetado tanto no módulo como no compoente, o angular irá usar o do componente primeiro.
+-> Outros componentes (componentes filohos, netos, etc) também conseguirão utilizar uma instância injetada dentro do componente pai
+
+*** 16.1. Por que precisamos de requisições HTTP? ***
+-> 
+
+*** 16.2. Instalando e testando o json-server ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/f74c0a38c8e4683b8169f3be83f50d3c172909b2
+
+$ npm install -g json-server
+
+$ json-server --watch data/db.json
+
+localhost:3000/cidades
+
+*** 16.3. Fazendo requisição com GET e recebendo o retorno ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/a53d909477865e077cb02b75635e4511d8fa46f7
+
+ATTENTION: Observações para a versão 8 do Angular:
+1. Gerando o serviço
+Como mencionado anteriormente, nas novas versões para não criarmos o arquivo de testes, usamos o parâemtro --skipTests.
+
+$ ng g s cidade --skipTests
+2. Importando módulo HttpClient
+Utilizaremos o módulo HttpClient para realizarmos nossas requisições, pois o módulo Http já está depreciado desde a versão 4 do Angular.
+
+Agora na versão 8, ele foi removido definitivamente, sendo substituído pelo módulo que iremos demonstrar agora.
+
+No arquivo app.module.ts, iremos importar o HttpClientModule:
+
+import { HttpClientModule } from '@angular/common/http';
+E declaramos o mesmo no nosso array de imports:
+
+imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
+]   
+3. toPromise
+Como mostrado na aula, foi preciso importar o operador toPromise do rxjs. Com essa versão não é mais necessário
+
+4. Retorno do HttpClient
+Usando o módulo Http, era necessário fazer o parse para json manualmente, para termos acesso ao corpo da resposta.
+
+Com o HttpClient, isso não é mais necessário, pois ele já nos retorna o corpo em formato JSON. Precisamos então apenas realizar a chamada:
+
+consultar(): Promise<any> {
+    return this.http.get('http://localhost:3000/cidades')
+      .toPromise();
+}
+Já no arquivo app.component.ts, teremos acesso direto a resposta:
+
+this.cidadeService.consultar()
+    .then(cidades => {
+        this.cidades = cidades;
+    });
+
+
+*** 16.4. Fazendo requisição com POST ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/c5674f20184a555ee30b7f06db1eee35959237cd
+
+-> O "Observable" trabalha de forma lazy, ou seja, ele só vai executar a operação quando alguém der um subscribe. 
+
+*** 16.5. Fazendo requisição com DELETE ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/407817c1441e4bc283391614e3be8b4fa0ffc4ab
+
+*** 16.6. Fazendo requisição com PUT ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/963f5048c89751819df1996e56fd55b18ec1db5f
+
+*** 16.7. Tratando erros de requisições HTTP ***
+Commit: https://github.com/stallone1984/algaworks-angular-meuprojeto/commit/c3bab55e43e64d0d8b6879f1b580b6218d75c4e3
+
+
+
+
+
+
+
+
+
 
 
 
