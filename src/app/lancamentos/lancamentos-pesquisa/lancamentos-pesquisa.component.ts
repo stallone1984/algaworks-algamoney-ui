@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LancamentoDTO } from '../models/lancamento.dto';
-import { LancamentoService } from '../lancamento.service';
+import { LancamentoService, FiltroLancamento } from '../lancamento.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -11,6 +11,8 @@ export class LancamentosPesquisaComponent implements OnInit{
 
   descricao: string;
   lancamentos: LancamentoDTO[] = [];
+  dataVencimentoInicio: Date;
+  dataVencimentoFim: Date;
 
   constructor(
     private lancamentoService: LancamentoService
@@ -21,7 +23,12 @@ export class LancamentosPesquisaComponent implements OnInit{
   }
 
   pesquisar() {
-    this.lancamentoService.pesquisar({ descricao: this.descricao })
+    const filtro: FiltroLancamento = {
+      descricao: this.descricao, 
+      dataVencimentoInicio: this.dataVencimentoInicio,
+      dataVencimentoFim: this.dataVencimentoFim
+    }
+    this.lancamentoService.pesquisar(filtro)
     .then(response => {
       this.lancamentos = response;
     })

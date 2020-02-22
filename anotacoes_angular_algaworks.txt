@@ -930,7 +930,15 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8dd85eba8c
 
 
 *** 17.3. Adicionando filtro por descrição na pesquisa de lançamentos ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/c3f8aec82ef728440a287852f5ee4c5501ffcedf
+
+*** 17.4. Adicionando filtro por datas na pesquisa de lançamentos ***
+Commit:
+
+-> Instalar o moment:
+$ npm install moment --save
+
+
 
 
 
