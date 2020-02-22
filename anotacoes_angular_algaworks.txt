@@ -933,10 +933,18 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8dd85eba8c
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/c3f8aec82ef728440a287852f5ee4c5501ffcedf
 
 *** 17.4. Adicionando filtro por datas na pesquisa de lançamentos ***
-Commit:
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8ff8e9a806e4e527c0cb209b033dabf9bc74dc1d
 
 -> Instalar o moment:
 $ npm install moment --save
+
+*** 17.5. Implementando a paginação no serviço de lançamentos ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/aa100513511c39df09571b1266e4e142735ca193
+
+*** 17.6. Configurando a paginação lazy do PrimeNG ***
+Commit: 
+
+
 
 
 
