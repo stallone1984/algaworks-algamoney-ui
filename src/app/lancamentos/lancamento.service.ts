@@ -53,7 +53,7 @@ export class LancamentoService {
   }
 
   excluir(codigo: number): Promise<void> {
-    return this.http.delete(`${this.urlLancamentos}/${codigo}`)
+    return this.http.delete(`${this.urlLancamentos}/${codigo}111`)
     .toPromise()
     .then(() => null);
   }

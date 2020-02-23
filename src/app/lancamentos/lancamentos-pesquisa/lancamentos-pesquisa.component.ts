@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LancamentoDTO } from '../models/lancamento.dto';
 import { LancamentoService, FiltroLancamento } from '../lancamento.service';
@@ -21,7 +22,8 @@ export class LancamentosPesquisaComponent {
   constructor(
     private lancamentoService: LancamentoService,
     private toast: ToastyService,
-    private confirmation: ConfirmationService
+    private confirmation: ConfirmationService,
+    private errorHandler: ErrorHandlerService
   ) { }
 
   pesquisar(pagina = 0) {
@@ -31,7 +33,8 @@ export class LancamentosPesquisaComponent {
     .then(response => {
       this.lancamentos = response.lancamentos;
       this.totalResgistros = response.totalResgistros;
-    });
+    })
+    .catch(error => this.errorHandler.handle(error));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -44,7 +47,8 @@ export class LancamentosPesquisaComponent {
     .then(() => {
       this.grid.reset();
       this.toast.success('Lançamento excluído com sucesso');
-    });
+    })
+    .catch(error => this.errorHandler.handle(error));
   }
 
   confirmarExclusao(lancamento: LancamentoDTO) {

@@ -1,23 +1,16 @@
-import { ToastyModule } from 'ng2-toasty';
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import localePt from '@angular/common/locales/pt';
+
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
 
 import { AppComponent } from './app.component';
-
-import { FormsModule } from '@angular/forms';
+import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
-import { CoreModule } from './core/core.module';
-import { LancamentoService } from './lancamentos/lancamento.service';
-import { AuthInterceptorProvider } from 'src/interceptors/auth-interceptor';
-
-import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt);
 
@@ -32,14 +25,9 @@ registerLocaleData(localePt);
     LancamentosModule,
     PessoasModule,
     CoreModule,
-    HttpClientModule,
-    ToastyModule.forRoot(),
-    ConfirmDialogModule
+    HttpClientModule
   ],
   providers: [
-    LancamentoService,
-    AuthInterceptorProvider,
-    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

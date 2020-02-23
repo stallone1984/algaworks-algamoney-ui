@@ -967,11 +967,13 @@ $ npm install --save rxjs-compat
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/db750a66e45096a29f25004ba297c6c646090f1b
 
 *** 17.11. Alterando o locale da aplicação para pt-BR ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/84723e0ff6f91eeadae31bc78c64f6266d4f2831
 
 -> Em versões mais antigas:
 { provide: LOCALE_ID, useValue: 'pt-BR' }
 
+*** 17.12. Criando um serviço de tratamento de erros ***
+Commit: 
 
 
 
