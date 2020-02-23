@@ -1,4 +1,4 @@
 export interface PessoaDTO {
-    codigo: string,
-    nome: string
+    codigo: number;
+    nome: string;
 }

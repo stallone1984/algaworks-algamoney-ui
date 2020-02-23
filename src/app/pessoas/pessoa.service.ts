@@ -44,4 +44,10 @@ export class PessoaService {
     .toPromise()
     .then(response => response['content']);
   }
+
+  excluir(codigo: number): Promise<void> {
+    return this.http.delete(`${this.urlPessoas}/${codigo}`)
+    .toPromise()
+    .then(() => null);
+  }
 }

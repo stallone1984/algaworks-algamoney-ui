@@ -973,6 +973,9 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/84723e0ff6
 { provide: LOCALE_ID, useValue: 'pt-BR' }
 
 *** 17.12. Criando um serviço de tratamento de erros ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/72c41d5dce1f6671df33d17612b84bb08f6b0799
+
+*** 17.13. Desafio: implementando a exclusão de pessoas ***
 Commit: 
 
 
