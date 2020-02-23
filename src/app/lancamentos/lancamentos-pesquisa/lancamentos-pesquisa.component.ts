@@ -4,6 +4,7 @@ import { LancamentoService, FiltroLancamento } from '../lancamento.service';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { Table } from 'primeng/table/table';
 import { ToastyService } from 'ng2-toasty';
+import {ConfirmationService} from 'primeng/api';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -19,7 +20,8 @@ export class LancamentosPesquisaComponent {
 
   constructor(
     private lancamentoService: LancamentoService,
-    private toast: ToastyService
+    private toast: ToastyService,
+    private confirmation: ConfirmationService
   ) { }
 
   pesquisar(pagina = 0) {
@@ -42,6 +44,15 @@ export class LancamentosPesquisaComponent {
     .then(() => {
       this.grid.reset();
       this.toast.success('Lançamento excluído com sucesso');
+    });
+  }
+
+  confirmarExclusao(lancamento: LancamentoDTO) {
+    this.confirmation.confirm({
+      message: 'Deseja realmente excluir?',
+      accept: () => {
+        this.excluir(lancamento);
+      }
     });
   }
 }

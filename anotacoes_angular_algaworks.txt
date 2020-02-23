@@ -954,10 +954,17 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/76bc9ae43c
 @ViewChild('tabela', { static: true }) grid: Table
 
 *** 17.9. Adicionando mensagem de sucesso com Angular Toasty ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/a076583dfe69ddac65799c45339ce26f1433e084
+
+-> Para instalar o componente Toasty:
+$ npm install ng2-toasty --save
+
+ATENÇÃO!!!
+-> Para o Angular 8 precisa instal também:
+$ npm install --save rxjs-compat
+
+*** 17.10. Adicionando diálogo de confirmação antes da exclusão ***
 Commit: 
-
-
-
 
 
 
