@@ -48,7 +48,11 @@ export class LancamentosPesquisaComponent {
       this.grid.reset();
       this.toast.success('Lançamento excluído com sucesso');
     })
-    .catch(error => this.errorHandler.handle(error));
+    .catch(error => {
+      this.errorHandler.handle(error);
+      console.log(error);
+
+    });
   }
 
   confirmarExclusao(lancamento: LancamentoDTO) {

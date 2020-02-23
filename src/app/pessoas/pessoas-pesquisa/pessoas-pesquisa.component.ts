@@ -47,7 +47,7 @@ export class PessoasPesquisaComponent {
       this.grid.reset();
       this.toasty.success('Pessoa excluída com sucesso');
     })
-    .catch(error => this.errorHandler.handle(error));
+    .catch(erro => this.errorHandler.handle(erro));
   }
 
   confirmarExclusao(pessoa: PessoaDTO) {
