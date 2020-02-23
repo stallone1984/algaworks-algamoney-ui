@@ -976,7 +976,10 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/84723e0ff6
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/72c41d5dce1f6671df33d17612b84bb08f6b0799
 
 *** 17.13. Desafio: implementando a exclusão de pessoas ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/9733a54eb13679ca93f42ad9404adb7b24f131a4
+
+*** 17.14. Desafio: mensagem de erro de usuário na exclusão de pessoa ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/237df8c891287d7e70ca4d46689aa745f69b27e0
 
 
 

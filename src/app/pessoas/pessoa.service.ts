@@ -1,5 +1,5 @@
 import { PessoaDTO } from './../lancamentos/models/pessoa.dto';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export class FiltroPessoa {
@@ -47,6 +47,14 @@ export class PessoaService {
 
   excluir(codigo: number): Promise<void> {
     return this.http.delete(`${this.urlPessoas}/${codigo}`)
+    .toPromise()
+    .then(() => null);
+  }
+
+  alterarStatus(codigo: number, ativo: boolean): Promise<void> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    return this.http.put(`${this.urlPessoas}/${codigo}/ativo`, ativo, { headers })
     .toPromise()
     .then(() => null);
   }

@@ -23,7 +23,7 @@ export class PessoasPesquisaComponent {
   constructor(
     private pessoaService: PessoaService,
     private confirmation: ConfirmationService,
-    private toasty: ToastyService,
+    private toast: ToastyService,
     private errorHandler: ErrorHandlerService) {}
 
   pesquisar(pagina = 0) {
@@ -45,7 +45,7 @@ export class PessoasPesquisaComponent {
     this.pessoaService.excluir(pessoa.codigo)
     .then(() => {
       this.grid.reset();
-      this.toasty.success('Pessoa excluída com sucesso');
+      this.toast.success('Pessoa excluída com sucesso');
     })
     .catch(erro => this.errorHandler.handle(erro));
   }
@@ -55,5 +55,16 @@ export class PessoasPesquisaComponent {
       message: 'Deseja realmente excluir esta pessoa?',
       accept: () => this.excluir(pessoa)
     });
+  }
+
+  alterarStatus(pessoa: PessoaDTO) {
+    const novoStatus = !pessoa.ativo;
+    this.pessoaService.alterarStatus(pessoa.codigo, novoStatus)
+      .then(() => {
+        const acao = novoStatus ? 'ativada' : 'inativada';
+        pessoa.ativo = novoStatus;
+        this.toast.success(`Pessoa ${acao} com sucesso`);
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 }
