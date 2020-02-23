@@ -964,7 +964,13 @@ ATENÇÃO!!!
 $ npm install --save rxjs-compat
 
 *** 17.10. Adicionando diálogo de confirmação antes da exclusão ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/db750a66e45096a29f25004ba297c6c646090f1b
+
+*** 17.11. Alterando o locale da aplicação para pt-BR ***
 Commit: 
+
+-> Em versões mais antigas:
+{ provide: LOCALE_ID, useValue: 'pt-BR' }
 
 
 
