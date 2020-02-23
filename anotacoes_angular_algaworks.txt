@@ -948,6 +948,12 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/dfd51db299
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/f064833f78bfc483ea2dadbdd5b2f7ca368b1c04
 
 *** 17.8. Excluindo lançamentos e o decorador @ViewChild ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/76bc9ae43c31e4d1a3cb2173033bd82ea56acd7a
+
+-> Usamos o decorator @ViewChild para que o component possa referenciar algo do template:
+@ViewChild('tabela', { static: true }) grid: Table
+
+*** 17.9. Adicionando mensagem de sucesso com Angular Toasty ***
 Commit: 
 
 

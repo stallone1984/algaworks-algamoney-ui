@@ -1,3 +1,4 @@
+import { ToastyModule } from 'ng2-toasty';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,8 @@ import { AuthInterceptorProvider } from 'src/interceptors/auth-interceptor';
     LancamentosModule,
     PessoasModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastyModule.forRoot()
   ],
   providers: [
     LancamentoService,

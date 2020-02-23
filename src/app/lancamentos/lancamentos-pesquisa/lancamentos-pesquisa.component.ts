@@ -3,6 +3,7 @@ import { LancamentoDTO } from '../models/lancamento.dto';
 import { LancamentoService, FiltroLancamento } from '../lancamento.service';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { Table } from 'primeng/table/table';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -17,7 +18,8 @@ export class LancamentosPesquisaComponent {
   @ViewChild('tabela', { static: true }) grid: Table;
 
   constructor(
-    private lancamentoService: LancamentoService
+    private lancamentoService: LancamentoService,
+    private toast: ToastyService
   ) { }
 
   pesquisar(pagina = 0) {
@@ -39,6 +41,7 @@ export class LancamentosPesquisaComponent {
     this.lancamentoService.excluir(lancamento.codigo)
     .then(() => {
       this.grid.reset();
+      this.toast.success('Lançamento excluído com sucesso');
     });
   }
 }
