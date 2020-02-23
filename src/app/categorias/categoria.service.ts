@@ -11,8 +11,8 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  listarTodas(): Promise<CategoriaDTO> {
-    return this.http.get<CategoriaDTO>(this.urlCategorias)
+  listarTodas(): Promise<CategoriaDTO[]> {
+    return this.http.get<CategoriaDTO[]>(this.urlCategorias)
     .toPromise()
     .then(response => response);
   }
