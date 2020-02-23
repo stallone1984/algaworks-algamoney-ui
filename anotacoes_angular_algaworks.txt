@@ -981,6 +981,12 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/9733a54eb1
 *** 17.14. Desafio: mensagem de erro de usuário na exclusão de pessoa ***
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/237df8c891287d7e70ca4d46689aa745f69b27e0
 
+*** 17.15. Desafio: implementando a mudança de status de pessoas ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/103396003cad7eb5c446299564e14562b47c4794
+
+*** 17.16. Desafio: implementando o serviço de listagem de categorias ***
+Commit: 
+
 
 
 
