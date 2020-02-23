@@ -1,6 +1,7 @@
 import { PessoaDTO } from './pessoa.dto';
 
 export interface LancamentoDTO {
+    codigo: number;
     tipo: string;
     descricao: string;
     dataVencimento: Date;

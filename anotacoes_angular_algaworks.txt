@@ -942,6 +942,12 @@ $ npm install moment --save
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/aa100513511c39df09571b1266e4e142735ca193
 
 *** 17.6. Configurando a paginação lazy do PrimeNG ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/dfd51db29977447f15aaa74aa61dacd936036691
+
+*** 17.7. Desafio: criando a consulta e listagem de pessoas ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/f064833f78bfc483ea2dadbdd5b2f7ca368b1c04
+
+*** 17.8. Excluindo lançamentos e o decorador @ViewChild ***
 Commit: 
 
 
