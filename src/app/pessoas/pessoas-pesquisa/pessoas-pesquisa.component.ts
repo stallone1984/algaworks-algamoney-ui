@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { LazyLoadEvent } from 'primeng/api/public_api';
+import { PessoaService, FiltroPessoa } from './../pessoa.service';
+import { PessoaDTO } from './../../lancamentos/models/pessoa.dto';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -7,15 +10,24 @@ import { Component } from '@angular/core';
 })
 export class PessoasPesquisaComponent {
 
-  pessoas = [
-    {nome: 'Heitor Bernardino', cidade: 'São José dos Campos', estado: 'SP', ativo: true},
-    {nome: 'Luciana Cruz', cidade: 'São José dos Campos', estado: 'SP', ativo: true},
-    {nome: 'Luiz Antônio', cidade: 'Aparecida', estado: 'SP', ativo: true},
-    {nome: 'Luiz Eduardo', cidade: 'São José dos Campos', estado: 'SP', ativo: false},
-    {nome: 'Lilian Cruz', cidade: 'São Paulo', estado: 'SP', ativo: true},
-    {nome: 'Marcos Lemos', cidade: 'Belo Horizonte', estado: 'MG', ativo: false},
-    {nome: 'Rafael Panta', cidade: 'São Paulo', estado: 'SP', ativo: true},
-    {nome: 'Daniel Nadal', cidade: 'Curitiba', estado: 'PR', ativo: false}
-  ];
+  pessoas: PessoaDTO[] = [];
+  filtro = new FiltroPessoa();
+  totalRegistros = 0;
+
+  constructor(private pessoaService: PessoaService) {}
+
+  pesquisar(pagina = 0) {
+    this.filtro.pagina = pagina;
+    this.pessoaService.pesquisar(this.filtro)
+    .then(response => {
+      this.pessoas = response.pessoas;
+      this.totalRegistros = response.totalRegistros;
+    });
+  }
+
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
+  }
 
 }

@@ -26,15 +26,15 @@ export class LancamentoService {
     params = params.set('page', filtro.pagina.toString());
     params = params.set('size', filtro.itensPorPagina.toString());
 
-    if(filtro.descricao) {
+    if (filtro.descricao) {
       params = params.set('descricao', filtro.descricao);
     }
 
-    if(filtro.dataVencimentoInicio){
+    if (filtro.dataVencimentoInicio) {
       params = params.set('dataVencimentoDe', moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD'));
     }
 
-    if(filtro.dataVencimentoFim){
+    if (filtro.dataVencimentoFim) {
       params = params.set('dataVencimentoAte', moment(filtro.dataVencimentoFim).format('YYYY-MM-DD'));
     }
 

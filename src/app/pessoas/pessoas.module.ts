@@ -9,15 +9,13 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {TooltipModule} from 'primeng/tooltip';
 import {InputMaskModule} from 'primeng/inputmask';
-import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     PessoaCadastroComponent,
-    PessoasPesquisaComponent,
-    PessoasGridComponent
+    PessoasPesquisaComponent
   ],
   imports: [
     CommonModule,

@@ -8,7 +8,7 @@ import { LazyLoadEvent } from 'primeng/api/public_api';
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent implements OnInit{
+export class LancamentosPesquisaComponent {
 
   lancamentos: LancamentoDTO[] = [];
   filtro = new FiltroLancamento();
@@ -16,11 +16,7 @@ export class LancamentosPesquisaComponent implements OnInit{
 
   constructor(
     private lancamentoService: LancamentoService
-  ){}
-
-  ngOnInit() {
-    //this.pesquisar()
-  }
+  ) { }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
@@ -29,7 +25,7 @@ export class LancamentosPesquisaComponent implements OnInit{
     .then(response => {
       this.lancamentos = response.lancamentos;
       this.totalResgistros = response.totalResgistros;
-    })
+    });
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
