@@ -1,3 +1,4 @@
+import { PessoaService } from './../../pessoas/pessoa.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { CategoriaDTO } from './../../categorias/categoria.dto';
 import { Component, OnInit } from '@angular/core';
@@ -15,17 +16,15 @@ export class LancamentoCadastroComponent implements OnInit {
   ];
 
   categorias = [];
+  pessoas = [];
 
-  pessoas = [
-    { label: 'João da Silva', value: 4 },
-    { label: 'Sebastião Souza', value: 9 },
-    { label: 'Maria Abadia', value: 3 },
-  ];
-
-  constructor(private categoriaService: CategoriaService) { }
+  constructor(
+    private categoriaService: CategoriaService,
+    private pessoaService: PessoaService) { }
 
   ngOnInit() {
     this.carregarCategorias();
+    this.carregarPessoas();
   }
 
   carregarCategorias() {
@@ -35,4 +34,10 @@ export class LancamentoCadastroComponent implements OnInit {
     });
   }
 
+  carregarPessoas() {
+    this.pessoaService.listarTodas()
+    .then(response => {
+      this.pessoas = response.map(p => ({ label: p.nome, value: p.codigo }));
+    });
+  }
 }

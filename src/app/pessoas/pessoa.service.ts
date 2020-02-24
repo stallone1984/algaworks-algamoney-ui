@@ -39,7 +39,7 @@ export class PessoaService {
     });
   }
 
-  listarTodas(): Promise<PessoaDTO> {
+  listarTodas(): Promise<PessoaDTO[]> {
     return this.http.get(this.urlPessoas)
     .toPromise()
     .then(response => response['content']);

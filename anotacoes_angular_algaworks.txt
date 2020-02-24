@@ -987,6 +987,11 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/103396003c
 *** 17.16. Desafio: implementando o serviço de listagem de categorias ***
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/ded08523b5c299d91ce27fd199639952356ce670
 
+*** 17.17. Listando as categorias cadastradas no dropdown ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/128df04004f37ed67c3716644dfc59c94aec3ae0
+
+
+
 
 
 
