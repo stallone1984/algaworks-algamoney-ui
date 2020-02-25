@@ -1,7 +1,9 @@
+import { LancamentoCadastroDTO } from './../models/lancamento-cadastro.dto';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { CategoriaService } from './../../categorias/categoria.service';
 import { CategoriaDTO } from './../../categorias/categoria.dto';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -17,6 +19,7 @@ export class LancamentoCadastroComponent implements OnInit {
 
   categorias = [];
   pessoas = [];
+  lancamento = new LancamentoCadastroDTO();
 
   constructor(
     private categoriaService: CategoriaService,
@@ -25,6 +28,11 @@ export class LancamentoCadastroComponent implements OnInit {
   ngOnInit() {
     this.carregarCategorias();
     this.carregarPessoas();
+  }
+
+  salvar(form: FormControl) {
+    console.log(this.lancamento);
+
   }
 
   carregarCategorias() {
@@ -40,4 +48,5 @@ export class LancamentoCadastroComponent implements OnInit {
       this.pessoas = response.map(p => ({ label: p.nome, value: p.codigo }));
     });
   }
+
 }

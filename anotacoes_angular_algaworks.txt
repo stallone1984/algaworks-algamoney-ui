@@ -990,7 +990,8 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/ded08523b5
 *** 17.17. Listando as categorias cadastradas no dropdown ***
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/128df04004f37ed67c3716644dfc59c94aec3ae0
 
-
+*** 17.18. Desafio: listando as pessoas cadastradas no dropdown ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/33a657b08f7c738fa04adde4a86564c42e2369db
 
 
 
