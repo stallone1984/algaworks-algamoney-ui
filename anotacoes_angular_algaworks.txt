@@ -1000,6 +1000,15 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8f0247daca
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/b7b0d35e3b47c4033290d8a17b494a69b509ac5c
 
 *** 17.21. Desafio: implementando o cadastro de pessoas ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/cfaf6836b0a1cf0a689b98438f1e524b39c7968b
+
+*** 18.1. Introdução a rotas ***
+
+-> O roteamento permite que o usuário possa navegar entre as views
+-> Para fazer o roteamento, precisamos adicionar a tag <router-outlet>
+-> Baseado na url, o RouterModule vai selecionar dinamicamente as tags que devem ser exibidas
+
+*** 18.2. Configurando rotas na aplicação ***
 Commit: 
 
 
