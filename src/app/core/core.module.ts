@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { ToastyModule } from 'ng2-toasty';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
   imports: [
     CommonModule,
     ToastyModule.forRoot(),
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   exports: [
     NavbarComponent,

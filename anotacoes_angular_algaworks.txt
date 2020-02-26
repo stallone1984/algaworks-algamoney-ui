@@ -1009,6 +1009,9 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/cfaf6836b0
 -> Baseado na url, o RouterModule vai selecionar dinamicamente as tags que devem ser exibidas
 
 *** 18.2. Configurando rotas na aplicação ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/7ba29dc52a7cc767c30342343a3aaca083e93869
+
+*** 18.3. Navegando com Router Link ***
 Commit: 
 
 
