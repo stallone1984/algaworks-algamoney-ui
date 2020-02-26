@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { LancamentoDTO } from './models/lancamento.dto';
 import * as moment from 'moment';
+import { LancamentoCadastroDTO } from './models/lancamento-cadastro.dto';
 
 export class FiltroLancamento {
   descricao: string;
@@ -56,5 +57,11 @@ export class LancamentoService {
     return this.http.delete(`${this.urlLancamentos}/${codigo}`)
     .toPromise()
     .then(() => null);
+  }
+
+  adicionar(lancamento: LancamentoCadastroDTO) {
+    return this.http.post<LancamentoCadastroDTO>(
+      this.urlLancamentos, lancamento
+    ).toPromise();
   }
 }

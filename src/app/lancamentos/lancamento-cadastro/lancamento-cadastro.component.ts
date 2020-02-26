@@ -4,6 +4,9 @@ import { CategoriaService } from './../../categorias/categoria.service';
 import { CategoriaDTO } from './../../categorias/categoria.dto';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { LancamentoService } from '../lancamento.service';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from './../../core/error-handler.service';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -23,7 +26,10 @@ export class LancamentoCadastroComponent implements OnInit {
 
   constructor(
     private categoriaService: CategoriaService,
-    private pessoaService: PessoaService) { }
+    private pessoaService: PessoaService,
+    private lancamentoService: LancamentoService,
+    private toast: ToastyService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.carregarCategorias();
@@ -31,7 +37,15 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    console.log(this.lancamento);
+    this.lancamentoService.adicionar(this.lancamento)
+    .then(() => {
+      this.toast.success('Lançamento adicionado com sucesso');
+      form.reset();
+      this.lancamento = new LancamentoCadastroDTO();
+    })
+    .catch(error => {
+      this.errorHandler.handle(error);
+    });
 
   }
 
