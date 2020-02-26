@@ -1012,6 +1012,12 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/cfaf6836b0
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/7ba29dc52a7cc767c30342343a3aaca083e93869
 
 *** 18.3. Navegando com Router Link ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/e6d3a8bfed3b7cf96d995b27f0bcdb413e9e8892
+
+*** 18.4. Estilizando links da rota ativa *** 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8212112faf907dd0ac9c6bc305d30cbc114c4f57
+
+*** 18.5. Recebendo parâmetros da rota ***
 Commit: 
 
 
