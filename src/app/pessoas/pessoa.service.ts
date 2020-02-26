@@ -1,6 +1,7 @@
 import { PessoaDTO } from './../lancamentos/models/pessoa.dto';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PessoaCadastroDTO } from './models/pessoa-cadastro.dto';
 
 export class FiltroPessoa {
   nome: string;
@@ -57,5 +58,11 @@ export class PessoaService {
     return this.http.put(`${this.urlPessoas}/${codigo}/ativo`, ativo, { headers })
     .toPromise()
     .then(() => null);
+  }
+
+  adicionar(pessoa: PessoaCadastroDTO) {
+    return this.http.post<PessoaCadastroDTO>(
+      this.urlPessoas, pessoa
+    ).toPromise();
   }
 }

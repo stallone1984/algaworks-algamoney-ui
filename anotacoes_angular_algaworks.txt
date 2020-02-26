@@ -996,6 +996,12 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/33a657b08f
 *** 17.19. Criando classes de modelo e usando no cadastro de lançamentos ***
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8f0247daca6ae0f5172859a7240efa73631ed7ea
 
+*** 17.20. Implementando o serviço de cadastro de lançamentos ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/b7b0d35e3b47c4033290d8a17b494a69b509ac5c
+
+*** 17.21. Desafio: implementando o cadastro de pessoas ***
+Commit: 
+
 
 
 
