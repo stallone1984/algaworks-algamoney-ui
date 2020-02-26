@@ -64,4 +64,32 @@ export class LancamentoService {
       this.urlLancamentos, lancamento
     ).toPromise();
   }
+
+  atualizar(lancamento: LancamentoCadastroDTO): Promise<LancamentoCadastroDTO> {
+    return this.http.put<LancamentoCadastroDTO>(`${this.urlLancamentos}/${lancamento.codigo}`, lancamento)
+    .toPromise()
+    .then(response => {
+      this.converterStringsParaDatas([response]);
+      return response;
+    });
+  }
+
+  buscarPorCodigo(codigo: string): Promise<LancamentoCadastroDTO> {
+    return this.http.get<LancamentoCadastroDTO>(`${this.urlLancamentos}/${codigo}`)
+    .toPromise()
+    .then(lancamento => {
+      this.converterStringsParaDatas([lancamento]);
+      return lancamento;
+    });
+  }
+
+  private converterStringsParaDatas(lancamentos: LancamentoCadastroDTO[]) {
+    lancamentos.forEach(lanc => {
+      lanc.dataVencimento = moment(lanc.dataVencimento, 'YYYY-MM-DD').toDate();
+
+      if (lanc.dataPagamento) {
+        lanc.dataPagamento = moment(lanc.dataPagamento, 'YYYY-MM-DD').toDate();
+      }
+    });
+  }
 }
