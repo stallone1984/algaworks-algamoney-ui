@@ -37,10 +37,6 @@ import { RouterModule } from '@angular/router';
     DropdownModule,
     CurrencyMaskModule,
     SharedModule
-  ],
-  exports: [
-    LancamentosPesquisaComponent,
-    LancamentoCadastroComponent
   ]
 })
 export class LancamentosModule { }

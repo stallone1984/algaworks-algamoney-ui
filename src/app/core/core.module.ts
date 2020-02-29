@@ -9,11 +9,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ToastyModule } from 'ng2-toasty';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { RouterModule } from '@angular/router';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     CommonModule,
