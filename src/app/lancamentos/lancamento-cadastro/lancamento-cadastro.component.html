@@ -60,7 +60,8 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
-        <button pButton type="button" label="Novo" class="ui-button-success"></button>
+        <button pButton type="button" label="Novo" class="ui-button-success"
+          (click)="novo(lancamentoForm)"></button>
         <a routerLink="/lancamentos" class="margin-left-10">Voltar para a pesquisa</a>
       </div>
     </div>
