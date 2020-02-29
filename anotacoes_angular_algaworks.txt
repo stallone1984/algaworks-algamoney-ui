@@ -1018,7 +1018,13 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/e6d3a8bfed
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/8212112faf907dd0ac9c6bc305d30cbc114c4f57
 
 *** 18.5. Recebendo parâmetros da rota ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/45eaa8b7cd4bd1b325e603449b935b2e88748e22
+
+*** 18.6. Desafio: implementando os serviços de atualização e busca por código ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/a166fc9f0d3d3dc11a06998f1f714fe7a639ebd9
+
+*** 18.7. Preenchendo os campos na edição de lançamentos ***
+
 
 
 

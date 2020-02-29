@@ -74,7 +74,7 @@ export class LancamentoService {
     });
   }
 
-  buscarPorCodigo(codigo: string): Promise<LancamentoCadastroDTO> {
+  buscarPorCodigo(codigo: number): Promise<LancamentoCadastroDTO> {
     return this.http.get<LancamentoCadastroDTO>(`${this.urlLancamentos}/${codigo}`)
     .toPromise()
     .then(lancamento => {
