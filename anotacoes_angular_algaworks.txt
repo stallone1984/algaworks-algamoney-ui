@@ -1024,6 +1024,10 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/45eaa8b7cd
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/a166fc9f0d3d3dc11a06998f1f714fe7a639ebd9
 
 *** 18.7. Preenchendo os campos na edição de lançamentos ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/10e0e76b9cee566ef6bff4cbabe9454a2f2fdee4
+
+*** 18.8. Salvando lançamentos editados ***
+Commit: 
 
 
 

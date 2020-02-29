@@ -1,7 +1,6 @@
 import { LancamentoCadastroDTO } from './../models/lancamento-cadastro.dto';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { CategoriaService } from './../../categorias/categoria.service';
-import { CategoriaDTO } from './../../categorias/categoria.dto';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { LancamentoService } from '../lancamento.service';
@@ -59,6 +58,14 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+  adicionarLancamento(form: FormControl) {
     this.lancamentoService.adicionar(this.lancamento)
     .then(() => {
       this.toast.success('Lançamento adicionado com sucesso');
@@ -69,6 +76,17 @@ export class LancamentoCadastroComponent implements OnInit {
       this.errorHandler.handle(error);
     });
 
+  }
+
+  atualizarLancamento(form: FormControl) {
+    this.lancamentoService.atualizar(this.lancamento)
+    .then(lancamento => {
+      this.lancamento = lancamento;
+      this.toast.success('Lancamento alterado com sucesso');
+    })
+    .catch(error => {
+      this.errorHandler.handle(error);
+    });
   }
 
   carregarCategorias() {
