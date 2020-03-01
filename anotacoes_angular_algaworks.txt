@@ -1030,9 +1030,19 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/10e0e76b9c
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/789c9b8ea4aa36cff79f2abd9f50830f9b844385
 
 *** 18.9. Implementando navegação imperativa ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/35349284a981fcc5f03fd4492c0f1836be45a869
+
+*** 18.10. Fazendo redirecionamento ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/3386c88d4348dd72d7977937d5956974df36470b
+
+*** 18.11. Tratando rota não encontrada ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/d91ec261e12e4dbf5f9d49cdc0193422eca47b06
+
+*** 18.12. Definindo o título da página dinamicamente ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/16bf7e5174eee8303f55879960d4d3347e5de8de
+
+*** 18.13. Refatorando as rotas para usar Routing Module ***
 Commit: 
-
-
 
 
 
