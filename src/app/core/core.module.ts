@@ -10,6 +10,7 @@ import { ToastyModule } from 'ng2-toasty';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { Title } from '@angular/platform-browser';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     ErrorHandlerService,
     LancamentoService,
     AuthInterceptorProvider,
-    ConfirmationService
+    ConfirmationService,
+    Title
   ]
 })
 export class CoreModule { }

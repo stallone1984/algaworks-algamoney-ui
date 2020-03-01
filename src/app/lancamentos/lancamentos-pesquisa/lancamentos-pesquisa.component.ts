@@ -6,13 +6,14 @@ import { LazyLoadEvent } from 'primeng/api/public_api';
 import { Table } from 'primeng/table/table';
 import { ToastyService } from 'ng2-toasty';
 import {ConfirmationService} from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent {
+export class LancamentosPesquisaComponent implements OnInit {
 
   lancamentos: LancamentoDTO[] = [];
   filtro = new FiltroLancamento();
@@ -23,8 +24,13 @@ export class LancamentosPesquisaComponent {
     private lancamentoService: LancamentoService,
     private toast: ToastyService,
     private confirmation: ConfirmationService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private title: Title
   ) { }
+
+  ngOnInit() {
+    this.title.setTitle('Pesquisa de lançamentos');
+  }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
