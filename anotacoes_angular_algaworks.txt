@@ -1045,6 +1045,9 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/16bf7e5174
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/df437ed0b340b6dc77a96c2acb188c2b812728a1
 
 *** 18.14. Criando um Routing Module para o módulo de funcionalidade ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/3689d8e4765540d9eb48c1aec3442310aeccd658
+
+*** 18.15. Desafio: roteamento e edição de pessoas ***
 Commit: 
 
 

@@ -42,7 +42,8 @@
                 tooltipPosition="top" (click)="alterarStatus(pessoa)">{{pessoa.ativo ? 'Ativo' : 'Inativo'}}
                 </a></td>
             <td class="col-content-acoes">
-              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+              <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/pessoas', pessoa.codigo]"></a>
               <button class="margin-botoes" pButton icon="pi pi-trash" pTooltip="Excluir"
                 tooltipPosition="top" (click)="confirmarExclusao(pessoa)"></button>
             </td>
@@ -53,7 +54,7 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Nova Pessoa"></a>
+      <a pButton label="Nova Pessoa" routerLink="/pessoas/novo"></a>
     </div>
   </div>
 

@@ -1,4 +1,5 @@
 export class PessoaCadastroDTO {
+  codigo: number;
   nome: string;
   ativo = true;
   endereco = new EnderecoPessoaCadastroDTO();

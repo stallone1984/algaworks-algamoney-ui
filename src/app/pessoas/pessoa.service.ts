@@ -65,4 +65,14 @@ export class PessoaService {
       this.urlPessoas, pessoa
     ).toPromise();
   }
+
+  atualizar(pessoa: PessoaCadastroDTO): Promise<PessoaCadastroDTO> {
+    return this.http.put<PessoaCadastroDTO>(`${this.urlPessoas}/${pessoa.codigo}`, pessoa)
+    .toPromise();
+  }
+
+  buscarPorCodigo(codigo: number): Promise<PessoaCadastroDTO> {
+    return this.http.get<PessoaCadastroDTO>(`${this.urlPessoas}/${codigo}`)
+    .toPromise();
+  }
 }

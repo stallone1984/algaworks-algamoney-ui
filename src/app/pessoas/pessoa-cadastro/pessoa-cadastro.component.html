@@ -2,7 +2,7 @@
   <form #formCadastroPessoa="ngForm" autocomplete="off" (ngSubmit)="salvar(formCadastroPessoa)">
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Nova Pessoa</h1>
+        <h1>{{ editando ? 'Edição de' : 'Nova'}} Pessoa</h1>
       </div>
       <div class="ui-g-12 ui-fluid">
         <label>Nome</label>
@@ -57,8 +57,9 @@
 
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" [disabled]="formCadastroPessoa.invalid"></button>
-        <button pButton type="button" label="Novo" class="ui-button-success"></button>
-        <a href="javascrpt:;" class="margin-left-10">Voltar para a pesquisa</a>
+        <button pButton type="button" label="Novo" class="ui-button-success"
+          (click)="novo(formCadastroPessoa)"></button>
+        <a routerLink="/pessoas" class="margin-left-10">Voltar para a pesquisa</a>
       </div>
     </div>
   </form>
