@@ -14,7 +14,7 @@ import {DropdownModule} from 'primeng/dropdown';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 
 
@@ -26,7 +26,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -36,7 +35,8 @@ import { RouterModule } from '@angular/router';
     SelectButtonModule,
     DropdownModule,
     CurrencyMaskModule,
-    SharedModule
+    SharedModule,
+    LancamentosRoutingModule
   ]
 })
 export class LancamentosModule { }

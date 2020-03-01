@@ -1042,6 +1042,9 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/d91ec261e1
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/16bf7e5174eee8303f55879960d4d3347e5de8de
 
 *** 18.13. Refatorando as rotas para usar Routing Module ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/df437ed0b340b6dc77a96c2acb188c2b812728a1
+
+*** 18.14. Criando um Routing Module para o módulo de funcionalidade ***
 Commit: 
 
 
