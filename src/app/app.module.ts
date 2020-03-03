@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CoreModule } from './core/core.module';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { PessoasModule } from './pessoas/pessoas.module';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(localePt);
 
@@ -25,6 +26,7 @@ registerLocaleData(localePt);
     PessoasModule,
     CoreModule,
     HttpClientModule,
+    SegurancaModule,
     AppRoutingModule
   ],
   providers: [
