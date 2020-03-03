@@ -11,6 +11,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../seguranca/auth.service';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { Title } from '@angular/platform-browser';
     LancamentoService,
     AuthInterceptorProvider,
     ConfirmationService,
-    Title
+    Title,
+    AuthService
   ]
 })
 export class CoreModule { }

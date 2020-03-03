@@ -1050,8 +1050,19 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/3689d8e476
 *** 18.15. Desafio: roteamento e edição de pessoas ***
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/cbfc27bbfcc14318d567d30c59dba1ae36edeba9
 
-*** 
 
+##### Módulo 19 - Segurança do front-end #####
+
+
+*** 19.3. Desafio: módulo de segurança e protótipo da tela de login ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/6ff5cec24fa4877ef6a7e0b13b212c4d10b5007e
+
+-> Atenção à ordem de importação dos módulos. O módulo seguranca.module precisa ficar antes de app.module
+ senão ao acessar a rota de login vai redirecionar para pagina-nao-encontrada
+
+
+*** 19.4. Implementando o serviço de autenticação com OAuth 2 ***
+Commit:
 
 
 
