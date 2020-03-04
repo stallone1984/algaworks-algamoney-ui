@@ -8,6 +8,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
+export function tokenGetter(): string {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,9 +21,9 @@ import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
     SegurancaRoutingModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return '';
-        }
+        tokenGetter,
+        whitelistedDomains: ['localhost:8080'],
+        blacklistedRoutes: ['http://localhost:8080/oauth/token']
       }
   })
   ],

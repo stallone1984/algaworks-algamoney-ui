@@ -1,5 +1,4 @@
 import { ConfirmationService } from 'primeng/api';
-import { AuthInterceptorProvider } from 'src/interceptors/auth-interceptor';
 import { LancamentoService } from './../lancamentos/lancamento.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NgModule } from '@angular/core';
@@ -33,7 +32,6 @@ import { AuthService } from '../seguranca/auth.service';
   providers: [
     ErrorHandlerService,
     LancamentoService,
-    AuthInterceptorProvider,
     ConfirmationService,
     Title,
     AuthService

@@ -1108,7 +1108,7 @@ Já a forma de decodificar, e como armazenar este token, será da mesma maneira 
 
 
 *** 19.6. Tratando casos de erros e sucesso de autenticação ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/9fefae9cd3859c1f8d5211625517fc592761f1d4
 
 1. Tratamento da resposta
 Na aula, vimos que para obter a propriedade erro da resposta, vinda da API, primeiro era necessário converter o objeto response para json, utilizando o método "json()"
