@@ -1126,6 +1126,45 @@ Como com o HttpClient, não usamos o método json, precisamos obter o erro, atra
 });
 
 
+*** 19.7. Adicionando o Access Token nas chamadas HTTP ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/dcee9bdef5b526b9d2c5baba50904c4e05b7532d
+
+1. Configurações Angular-JWT
+Nessa versão da biblioteca de JWT, a integração com o componente HttpClient se dá de forma muito transparente, não sendo necessário utilizarmos mais o Wrapper citado na aula.
+
+Porém, precisamos especificar de onde será obtido o valor do nosso token, mesmo que estivermos seguindo o padrão de salvá-lo no localStorage como "token".
+
+Para isso, precisaremos, no seguranca.module.ts, adicionar algumas configurações (das que já inicamos em aulas anteriores)
+
+Declarar uma função para obter o token:
+Definimos, no início do nosso arquivo de módulo, uma função que irá retornar o token, ela não recebe argumentos e retorna uma string:
+
+export function tokenGetter(): string {
+    return localStorage.getItem('token');
+}
+Agora declaramos esta função, nas propriedades de configuração do JwtModule:
+
+JwtModule.forRoot({
+    config: {
+      tokenGetter: tokenGetter
+    }
+})
+Quais URLs interceptar?
+Para que funcione a interceptação das requisições, e para que seja adicionado o token nos Headers, precisamos informar quais URLs devemos intereceptar, e quais devemos ignorar.
+
+Nossa configuração ficará assim:
+
+JwtModule.forRoot({
+    config: {
+      tokenGetter: tokenGetter,
+      whitelistedDomains: ['localhost:8080'],
+      blacklistedRoutes: ['http://localhost:8080/oauth/token']
+    }
+  })
+Com isso, indicamos que no domínio "localhost:8080", todas as requisições serão interceptadas e o token será adicionado.
+
+Já para "http://localhost:8080/oauth/token" não ocorrerá nenhuma interceptação, pois neste endpoint, não utilizamos o token armazendo, e sim a autenticação básica, como vimos em aulas anteriores.
+
 
 
 
