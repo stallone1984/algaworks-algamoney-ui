@@ -1062,11 +1062,68 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/6ff5cec24f
 
 
 *** 19.4. Implementando o serviço de autenticação com OAuth 2 ***
-Commit:
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/c4720e5ab536802aea9e07c80a8757e86d813d7f
 
 
+*** 19.5. Decodificando o JWT e armazenando no Local Storage ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/d433c95d16bc7e9ed4e8737794b0546b743bb299
+
+1. Dependência Angular2-JWT
+A dependência que precisaremos instalar em nosso projeto agora, mudou, pois a versão utilizada na aula não é compatível com o módulo HttpClient.
+
+Segue o comando de instalação:
+
+npm install @auth0/angular-jwt
+2. JwtHelperService
+Precisaremos também declarar no seção "providers" de nosso módulo (seguranca.module.ts) o seguinte serviço:
+
+providers: [JwtHelperService]
+3. JwtModule
+Precisamos também realizar uma configuração bem simples para que o módulo possa funcionar corretamente.
+
+Também em nosso arquivo seguranca.module.ts, precisamos adicionar o seguinte código na seção "imports":
+
+JwtModule.forRoot({
+    config: {
+      tokenGetter: () => {
+        return '';
+      }
+    }
+})
+Pronto, agora estamos prontos para utilizar a dependência para JWT
+
+4. Utilização
+Não há diferenças na forma de utilizar essa biblioteca, comparado com o que foi ensinado na aula, as únicas diferenças são os tipos dos nossos atributos e de onde vamos importar.
+
+Em nosso construtor, na classe AuthService, iremos receber como parametro um JwtHelperService, do pacote "@auth0/angular-jwt"
+
+//...
+import { JwtHelperService } from '@auth0/angular-jwt';
+//...
+constructor(
+    private jwtHelper: JwtHelperService,
+    //..
+) { //... }
+Já a forma de decodificar, e como armazenar este token, será da mesma maneira da aula.
 
 
+*** 19.6. Tratando casos de erros e sucesso de autenticação ***
+Commit: 
+
+1. Tratamento da resposta
+Na aula, vimos que para obter a propriedade erro da resposta, vinda da API, primeiro era necessário converter o objeto response para json, utilizando o método "json()"
+
+Como com o HttpClient, não usamos o método json, precisamos obter o erro, através da propreidade "error". Ajustando o código da aula, teríamos:
+
+.catch(response => {
+    const responseError = response.error;
+    if (response.status === 400) {
+      if (responseError.error === 'invalid_grant') {
+        return Promise.reject('Usuário ou senha inválida');
+      }
+    }
+    return Promise.reject(response);
+});
 
 
 
