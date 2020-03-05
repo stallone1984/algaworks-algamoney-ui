@@ -1257,6 +1257,16 @@ Com isso, aguardamos o retorno do método "obterNovoAccessToken" e podemos adici
 Caso o token esteja válido ou se estivermos de fato fazendo uma requisição para /oauth/token, apenas redirecionamos para a requisição original.
 
 
+*** 19.12. Protegendo componentes ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/32fcdbcc58d8bae356e01f13cc84314a45005fdf
+
+*** 19.13. Protegendo rotas com guarda de rotas (CanActivate) ***
+Commit: 
+
+-> Gerar uma guada de rotas do angular
+$ ng g g seguranca/auth --spec=false
+
+-> Uma guarda retorna um valor que controla o comportamento.
 
 
 
