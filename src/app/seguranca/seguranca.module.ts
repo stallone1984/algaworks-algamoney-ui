@@ -7,6 +7,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MoneyHttpInterceptor } from './money-http-interceptor';
 
 export function tokenGetter(): string {
   return localStorage.getItem('token');
@@ -31,7 +33,12 @@ export function tokenGetter(): string {
     LoginFormComponent
   ],
   providers: [
-    JwtHelperService
+    JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MoneyHttpInterceptor,
+      multi: true
+  }
   ]
 })
 export class SegurancaModule { }
