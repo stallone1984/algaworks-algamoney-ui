@@ -16,12 +16,16 @@ export class ErrorHandlerService {
       msg = errorResponse;
     } else if (errorResponse instanceof HttpErrorResponse
       && errorResponse.status >= 400 && errorResponse.status <= 499) {
-      try {
-        msg = errorResponse.error[0].mensagemUsuario;
-        console.log('Ocorreu um erro', errorResponse);
-      } catch (error) {
-        msg = 'Ocorreu um erro ao processar a sua solicitação';
-        console.log('Ocorreu um erro', error);
+
+      if (errorResponse.status === 403) {
+        msg = 'Você não tem permissão para executar esta ação';
+      } else {
+        try {
+          msg = errorResponse.error[0].mensagemUsuario;
+          console.log('Ocorreu um erro', errorResponse);
+        } catch (error) {
+          msg = 'Ocorreu um erro ao processar a sua solicitação';
+        }
       }
 
     } else {

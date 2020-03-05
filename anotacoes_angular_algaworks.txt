@@ -1176,7 +1176,7 @@ Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/6e08e80455
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/4999b6f33aa192ebc6aab2d3a91e7e824d9e664d
 
 *** 19.11. Interceptando chamadas HTTP para tratar a expiração do access token ***
-Commit: 
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/f1632ecbcee180eb24b7f41de2f1b0b672d80547
 
 1. Interceptando requisições HTTP
 Como estamos utilizando o módulo HttpClient, temos uma maior flexibilidade para realizar determinadas tarefas, e uma dessas é a interceptação.
