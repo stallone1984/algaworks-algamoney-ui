@@ -1169,8 +1169,10 @@ Já para "http://localhost:8080/oauth/token" não ocorrerá nenhuma interceptaç
 *** 19.8. Exibindo o nome do usuário logado ***
 Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/13ea2cd35b39dee3017023272c66e909ce87de9d
 
-*** 
+*** 19.9. Exibindo o menu do sistema conforme permissões do usuário ***
+Commit: https://github.com/stallone1984/algaworks-algamoney-ui/commit/6e08e80455e0f0ece976f4c8ae3c6b050f03622a
 
+*** 19.10. Obtendo um novo access token ***
 
 
 
