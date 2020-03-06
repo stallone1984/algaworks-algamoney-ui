@@ -1,19 +1,30 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastyService } from 'ng2-toasty';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
+export class NotAuthenticatedErro {
+
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
 
-  constructor(private toastyService: ToastyService) { }
+  constructor(
+    private toastyService: ToastyService,
+    private router: Router
+  ) { }
 
   handle(errorResponse: any) {
     let msg: string;
 
     if (typeof errorResponse === 'string') {
       msg = errorResponse;
+    } else if (errorResponse instanceof NotAuthenticatedErro) {
+      msg = 'Sua sessão expirou';
+      this.router.navigate(['/login']);
     } else if (errorResponse instanceof HttpErrorResponse
       && errorResponse.status >= 400 && errorResponse.status <= 499) {
 
