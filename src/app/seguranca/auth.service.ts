@@ -8,6 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   urlAuthToken = 'http://localhost:8080/oauth/token';
+  urlTokensRevoke = 'http://localhost:8080/tokens/revoke';
   jwtPayload: any;
 
   constructor(
@@ -56,6 +57,15 @@ export class AuthService {
     .catch(response => {
       console.error('Erro ao renovar token', response);
       return Promise.resolve(null);
+    });
+  }
+
+  limparAccessToken() {
+    return this.http.delete(this.urlTokensRevoke, { withCredentials: true })
+    .toPromise()
+    .then(() => {
+      localStorage.removeItem('token');
+      this.jwtPayload = null;
     });
   }
 
